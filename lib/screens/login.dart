@@ -129,14 +129,14 @@ class _LoginScreenState extends State<LoginScreen> {
       //access firestore
       final document =
           await FirebaseFirestore.instance
-              .collection('establishments')
+              .collection('users')
               .doc(userId)
               .get();
 
-      var docData = document.data;
+      var docData = document.data();
       Widget landingScreen;
-      if (docData != null) {
-        landingScreen = ClientScreen();
+      if (docData!=null) {
+        landingScreen = ClientScreen(uid: userId,);
       } else {
         landingScreen = EstablishmentScreen();
       }
